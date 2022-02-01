@@ -74,4 +74,22 @@
 		</navigation-case>
 	</navigation-rule>
 
+	<!-- Nav cases Phase -->
+
+	<navigation-rule>
+		<from-view-id>/addPhase.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ctrPhaseBean.savePhase}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/listPhases.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/listPhases.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ctrPhaseBean.addPhase}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/addPhase.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
