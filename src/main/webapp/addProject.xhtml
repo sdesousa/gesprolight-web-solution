@@ -47,18 +47,18 @@
 				<h:inputText type="date"
 					value="#{ctrProjetBean.projectDataBean.startDate}"
 					class="form-control" id="startDate" required="true">
-					<f:convertDateTime pattern="dd-mm-yyyy" />
+					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:inputText>
 				<h:message for="startDate" />
 				<h:outputText value="#{ctrProjetBean.projectDataBean.startDate}">
-					<f:convertDateTime pattern="yyyy-MM-dd" />
+					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:outputText>
 				<!-- End Date -->
 				<h:outputText value="#{msg.endDate}" />
 				<h:inputText type="date"
 					value="#{ctrProjetBean.projectDataBean.endDate}"
 					class="form-control" id="endDate" required="true">
-					<f:convertDateTime pattern="dd-mm-yyyy" />
+					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:inputText>
 				<h:message for="endDate" style="color : red" />
 
@@ -78,11 +78,12 @@
 						var="project" itemLabel="#{project.firstname}" />
 				</h:selectOneMenu> -->
 				
+				<!--  
 				<h:selectOneMenu id="gpProjectManager" value="#{ctrProjetBean.gpProjectManagerDataBean}" styleClass="form-control" converter="SelectItemToEntityConverter2">
-				    <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
+				     <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
 				    <f:selectItems value="#{ctrProjetBean.projectManagers}" var="pm" itemLabel="#{pm.firstname}" itemValue="#{pm}"/>
 				</h:selectOneMenu>
-
+					-->
 				<!-- Organisation -->
 				<h:outputText value="#{msg.project_org}" />
 				<!-- <h:selectOneMenu id="gpOrganization" value="#{ctrProjetBean.organizationDataBean}" styleClass="form-control" converter="SelectItemToEntityConverter">
@@ -91,10 +92,18 @@
 						var="organization" itemLabel="#{organization.name}" />
 
 				</h:selectOneMenu> --> 
+				
+				<!-- 
 				<h:selectOneMenu  value="#{ctrProjetBean.org}" converter="SelectItemToEntityConverter" styleClass="form-control">
 				    <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
 				    <f:selectItems value="#{ctrProjetBean.organizations}" var="orgs" itemLabel="${orgs.name}" itemValue="#{orgs}" />
 				</h:selectOneMenu>
+				-->
+				<h:selectOneMenu  value="#{ctrProjetBean.projectDataBean.gpOrganization.id}" styleClass="form-control">
+				     <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
+				    <f:selectItems value="#{ctrProjetBean.organizations}" var="org" itemLabel="${org.name}" itemValue="#{org.id}" />
+				</h:selectOneMenu>
+				 
  				<br/>
 				<h:commandButton styleClass="btn btn-success " 
 					value="#{msg.submit_button}" action="#{ctrProjetBean.saveProject}" />

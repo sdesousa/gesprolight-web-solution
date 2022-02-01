@@ -14,7 +14,6 @@ import af.cmr.indyli.gespro.light.business.entity.GpOrganization;
 @FacesConverter(value = "SelectItemToEntityConverter")
 public class SelectItemToEntityConverter implements Converter {
 
-	@Override
 	public Object getAsObject(FacesContext ctx, UIComponent comp, String value) {
 		Object o = null;
 		if (!(value == null || value.isEmpty())) {
@@ -23,7 +22,6 @@ public class SelectItemToEntityConverter implements Converter {
 		return o;
 	}
 
-	@Override
 	public String getAsString(FacesContext ctx, UIComponent comp, Object value) {
 		String s = "";
 		if (value != null) {
@@ -42,7 +40,7 @@ public class SelectItemToEntityConverter implements Converter {
 				selectItems = (List<GpOrganization>) ((UISelectItems) uic).getValue();
 
 				if (itemId != null && selectItems != null && !selectItems.isEmpty()) {
-					Predicate<GpOrganization> predicate = i -> i.getId().equals(itemId);
+					Predicate<GpOrganization> predicate = i -> i.getId().equals(itemId); 
 					item = selectItems.stream().filter(predicate).findFirst().orElse(null);
 				}
 			}

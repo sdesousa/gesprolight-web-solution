@@ -12,7 +12,9 @@ import af.cmr.indyli.gespro.light.business.entity.GpPhase;
 import af.cmr.indyli.gespro.light.business.entity.GpProject;
 import af.cmr.indyli.gespro.light.business.entity.GpProjectManager;
 import af.cmr.indyli.gespro.light.business.exception.GesproBusinessException;
+import af.cmr.indyli.gespro.light.business.service.IGpOrganizationService;
 import af.cmr.indyli.gespro.light.business.service.IGpPhaseService;
+import af.cmr.indyli.gespro.light.business.service.IGpProjectManagerService;
 import af.cmr.indyli.gespro.light.business.service.IGpProjectService;
 import af.cmr.indyli.gespro.light.business.service.impl.GpOrganizationServiceImpl;
 import af.cmr.indyli.gespro.light.business.service.impl.GpPhaseServiceImpl;
@@ -23,13 +25,17 @@ import af.cmr.indyli.gespro.light.business.service.impl.GpProjectServiceImpl;
 @RequestScoped
 public class GpProjectManagedBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -901050335633154583L;
 	private GpProject projectDataBean = new GpProject();
 	private GpOrganization organizationDataBean = new GpOrganization();
 	private GpProjectManager gpProjectManagerDataBean = new GpProjectManager();
 	private IGpProjectService projetService = new GpProjectServiceImpl();
 	private IGpPhaseService phaseService = new GpPhaseServiceImpl();
-	private GpProjectManagerServiceImpl empService = new GpProjectManagerServiceImpl();
-	private GpOrganizationServiceImpl orgService = new GpOrganizationServiceImpl();
+	private IGpProjectManagerService<GpProjectManager> empService = new GpProjectManagerServiceImpl();
+	private IGpOrganizationService orgService = new GpOrganizationServiceImpl(); 
 
 	private List<GpProject> projectList = null;
 	private List<GpPhase> phaseList = null;
@@ -37,12 +43,15 @@ public class GpProjectManagedBean implements Serializable {
 	private List<GpProjectManager> projectManagers;
 	private GpOrganization org;
 
-	private String idOrg;
+	private Integer idOrg;
 	private String idEmp;
 	private int projectId;
 	
 	public GpProjectManagedBean() {
+		this.org = new GpOrganization();
 		this.projectList = this.projetService.findAll();
+		this.organizations = this.orgService.findAll();
+		this.projectManagers = this.empService.findAll();
 	}
 
 	public String saveProject() throws GesproBusinessException {
@@ -55,8 +64,6 @@ public class GpProjectManagedBean implements Serializable {
 	}
 
 	public String addProject() {
-		this.organizations = this.orgService.findAll();
-		this.projectManagers = this.empService.findAll();
 
 		return "success";
 	}
@@ -140,11 +147,11 @@ public class GpProjectManagedBean implements Serializable {
 		this.organizations = organizations;
 	}
 
-	public String getIdOrg() {
+	public Integer getIdOrg() {
 		return idOrg;
 	}
 
-	public void setIdOrg(String idOrg) {
+	public void setIdOrg(Integer idOrg) {
 		this.idOrg = idOrg;
 	}
 
