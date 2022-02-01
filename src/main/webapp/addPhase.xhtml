@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Ajout d'une phase</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+</h:head>
+<h:body>
+	<ui:include src="nav.xhtml"></ui:include>
+	<div class="container-fluid col-lg-6">
+		<div class="form-group">
+			<h:form>
+				<h4>
+					<h:outputText value="#{msg.add_phase_msg}" />
+				</h4>
+				<h:inputHidden styleClass="form-control"
+					value="#{ctrPhaseBean.projectId}" required="true" id="idProject" />
+				<h:outputText value="#{msg.code_phase}" />
+				<h:inputText styleClass="form-control"
+					value="#{ctrPhaseBean.phaseDataBean.phaseCode}" required="true"
+					id="phaseCode" />
+				<h:message for="paseCode" style="color : red" />
+
+				<h:outputText value="#{msg.description}" />
+				<h:inputText styleClass="form-control"
+					value="#{ctrPhaseBean.phaseDataBean.description}" required="true"
+					id="description" requiredMessage="#{msg.phase_description_msg}" />
+				<h:message for="description" style="color : red" />
+
+				<h:outputText value="#{msg.startDate}" />
+				<h:inputText value="#{ctrPhaseBean.phaseDataBean.startDate}"
+					class="form-control" id="startDate" required="true">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:inputText>
+				<h:message for="startDate" />
+
+				<h:outputText value="#{msg.endDate}" />
+				<h:inputText type="date" class="form-control"
+					value="#{ctrPhaseBean.phaseDataBean.endDate}" required="true"
+					id="endDate">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:inputText>
+
+				<h:message for="nom" style="color : red" />
+
+				<h:outputText value="#{msg.amount}" />
+				<h:inputText class="form-control"
+					value="#{ctrPhaseBean.phaseDataBean.amount}" required="true"
+					id="amount" converter="javax.faces.Double">
+				</h:inputText>
+
+				<h:outputText value="#{msg.status}" />
+				<h:inputText class="form-control"
+					value="#{ctrPhaseBean.phaseDataBean.status}" required="true"
+					id="status">
+				</h:inputText>
+				<h:outputText value="#{msg.status}" />
+				<h:inputText class="form-control"
+					value="#{ctrPhaseBean.phaseDataBean.isEnded}" required="true"
+					id="isEnded">
+				</h:inputText>
+				<br />
+				<h:commandButton styleClass="btn btn-success"
+					value="#{msg.register_submit_button}"
+					action="#{ctrPhaseBean.savePhase}" />
+			</h:form>
+		</div>
+	</div>
+</h:body>
 </html>

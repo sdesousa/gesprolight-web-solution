@@ -37,7 +37,8 @@ public class GpProjectManagedBean implements Serializable {
 	private GpOrganization org;
 	private String idOrg;
 	private String idEmp;
-
+	private int projectId;
+	
 	public GpProjectManagedBean() {
 		this.projectList = this.projetService.findAll();
 	}
@@ -62,10 +63,9 @@ public class GpProjectManagedBean implements Serializable {
 	}
 
 	public String getProjectPhase() {
-		String projectId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+		this.projectId = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
 
 		this.phaseList = this.phaseService.findByProjectId(Integer.valueOf(projectId));
-
 		return "success";
 	}
 
@@ -143,6 +143,14 @@ public class GpProjectManagedBean implements Serializable {
 
 	public void setIdEmp(String idEmp) {
 		this.idEmp = idEmp;
+	}
+
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 
 }
