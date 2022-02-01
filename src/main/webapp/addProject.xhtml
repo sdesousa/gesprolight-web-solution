@@ -72,22 +72,28 @@
 
 				<!-- Chef Project -->
 				<h:outputText value="#{msg.project_mp}" />
-				<h:selectOneMenu id="gpProject"
+				<!-- <h:selectOneMenu id="gpProject"
 					value="#{ctrProjetBean.projectDataBean}" styleClass="form-control">
 					<f:selectItems value="#{ctrProjetBean.projectManagers}"
 						var="project" itemLabel="#{project.firstname}" />
+				</h:selectOneMenu> -->
+				
+				<h:selectOneMenu id="gpProjectManager" value="#{ctrProjetBean.gpProjectManagerDataBean}" styleClass="form-control" converter="SelectItemToEntityConverter2">
+				    <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
+				    <f:selectItems value="#{ctrProjetBean.projectManagers}" var="pm" itemLabel="#{pm.firstname}" itemValue="#{pm}"/>
 				</h:selectOneMenu>
 
 				<!-- Organisation -->
 				<h:outputText value="#{msg.project_org}" />
-				<h:selectOneMenu id="gpOrganization"
-					value="#{ctrProjetBean.organizationDataBean}"
-					styleClass="form-control">
-					<f:selectItem itemLabel="Choose Organisation"
-						noSelectionOption="true" />
+				<!-- <h:selectOneMenu id="gpOrganization" value="#{ctrProjetBean.organizationDataBean}" styleClass="form-control" converter="SelectItemToEntityConverter">
+					<f:selectItem itemLabel="Choose Organisation" noSelectionOption="true" />
 					<f:selectItems value="#{ctrProjetBean.organizations}"
 						var="organization" itemLabel="#{organization.name}" />
 
+				</h:selectOneMenu> --> 
+				<h:selectOneMenu  value="#{ctrProjetBean.org}" converter="SelectItemToEntityConverter" styleClass="form-control">
+				    <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
+				    <f:selectItems value="#{ctrProjetBean.organizations}" var="orgs" itemLabel="${orgs.name}" itemValue="#{orgs}" />
 				</h:selectOneMenu>
  				<br/>
 				<h:commandButton styleClass="btn btn-success " 

@@ -25,6 +25,7 @@ public class GpProjectManagedBean implements Serializable {
 
 	private GpProject projectDataBean = new GpProject();
 	private GpOrganization organizationDataBean = new GpOrganization();
+	private GpProjectManager gpProjectManagerDataBean = new GpProjectManager();
 	private IGpProjectService projetService = new GpProjectServiceImpl();
 	private IGpPhaseService phaseService = new GpPhaseServiceImpl();
 	private GpProjectManagerServiceImpl empService = new GpProjectManagerServiceImpl();
@@ -35,6 +36,7 @@ public class GpProjectManagedBean implements Serializable {
 	private List<GpOrganization> organizations;
 	private List<GpProjectManager> projectManagers;
 	private GpOrganization org;
+
 	private String idOrg;
 	private String idEmp;
 
@@ -46,7 +48,8 @@ public class GpProjectManagedBean implements Serializable {
 		this.projetService.create(this.projectDataBean);
 		this.projectList = this.projetService.findAll();
 
-		System.out.println("ID ORG :" + idOrg + "   ID EMP : " + idEmp);
+//		System.out.println( "ID ORG :" + this.organizationDataBean.getId() + "   ID EMP : " + gpProjectManagerDataBean.getId());
+		System.out.println(this.idOrg);
 		return "success";
 	}
 
@@ -83,6 +86,14 @@ public class GpProjectManagedBean implements Serializable {
 
 	public GpOrganization getOrganizationDataBean() {
 		return organizationDataBean;
+	}
+
+	public GpProjectManager getGpProjectManagerDataBean() {
+		return gpProjectManagerDataBean;
+	}
+
+	public void setGpProjectManagerDataBean(GpProjectManager gpProjectManagerDataBean) {
+		this.gpProjectManagerDataBean = gpProjectManagerDataBean;
 	}
 
 	public void setOrganizationDataBean(GpOrganization organizationDataBean) {
