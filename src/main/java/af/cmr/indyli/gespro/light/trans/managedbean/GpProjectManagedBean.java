@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import af.cmr.indyli.gespro.light.business.entity.GpOrganization;
@@ -22,7 +23,7 @@ import af.cmr.indyli.gespro.light.business.service.impl.GpProjectManagerServiceI
 import af.cmr.indyli.gespro.light.business.service.impl.GpProjectServiceImpl;
 
 @ManagedBean(name = "ctrProjetBean")
-@RequestScoped
+@SessionScoped
 public class GpProjectManagedBean implements Serializable {
 
 	/**

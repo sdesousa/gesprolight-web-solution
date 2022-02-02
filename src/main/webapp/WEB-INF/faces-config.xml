@@ -25,6 +25,7 @@
 			<from-action>#{ctrEmployeeBean.saveEmployee}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/empList.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -34,6 +35,7 @@
 			<from-action>#{ctrEmployeeBean.updateEmployee}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/empList.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -47,6 +49,7 @@
 			<from-action>#{ctrEmployeeBean.deleteEmpById}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/empList.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -75,6 +78,7 @@
 			<from-action>#{ctrProjetBean.saveProject}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/listProjects.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -93,7 +97,7 @@
 			<from-action>#{ctrPhaseBean.savePhase}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/listPhases.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>

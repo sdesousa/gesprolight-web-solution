@@ -18,11 +18,11 @@
 }
 </style>
 	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
 </h:head>
 <h:body>
 
-	<ui:include src="nav.xhtml"></ui:include>
+	<ui:include src="nav.xhtml"></ui:include>  
 	<div class="container">
 		<h3>
 			<h:outputText value="#{msg.greeting_text}" />
@@ -38,7 +38,7 @@
 				<p class="col-md-6 bg-light text-right">
 					<h:commandButton styleClass="btn btn-success"
 						action="#{ctrPhaseBean.addPhase}"
-						value="#{ctrProjetBean.projectId}">
+						value="#{msg.btn_add}">
 						<f:param name="projectId" value="#{ctrProjetBean.projectId}" />
 					</h:commandButton>
 				</p>
