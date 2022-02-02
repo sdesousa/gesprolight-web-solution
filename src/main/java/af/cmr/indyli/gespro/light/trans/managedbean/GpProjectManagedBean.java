@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import af.cmr.indyli.gespro.light.business.entity.GpOrganization;
@@ -35,7 +36,7 @@ public class GpProjectManagedBean implements Serializable {
 	private IGpProjectService projetService = new GpProjectServiceImpl();
 	private IGpPhaseService phaseService = new GpPhaseServiceImpl();
 	private IGpProjectManagerService<GpProjectManager> empService = new GpProjectManagerServiceImpl();
-	private IGpOrganizationService orgService = new GpOrganizationServiceImpl(); 
+	private IGpOrganizationService<GpOrganization> orgService = new GpOrganizationServiceImpl();
 
 	private List<GpProject> projectList = null;
 	private List<GpPhase> phaseList = null;
@@ -46,7 +47,7 @@ public class GpProjectManagedBean implements Serializable {
 	private Integer idOrg;
 	private String idEmp;
 	private int projectId;
-	
+
 	public GpProjectManagedBean() {
 		this.org = new GpOrganization();
 		this.projectList = this.projetService.findAll();
@@ -55,10 +56,17 @@ public class GpProjectManagedBean implements Serializable {
 	}
 
 	public String saveProject() throws GesproBusinessException {
+
+		GpOrganization organization = (GpOrganization) orgService.findById(idOrg);
+		this.projectDataBean.setGpOrganization(organization);
+		
+		GpProjectManager manager = new GpProjectManager();
+		manager.setId(1);
+		
+		this.projectDataBean.setGpChefProjet(manager);
 		this.projetService.create(this.projectDataBean);
 		this.projectList = this.projetService.findAll();
 
-//		System.out.println( "ID ORG :" + this.organizationDataBean.getId() + "   ID EMP : " + gpProjectManagerDataBean.getId());
 		System.out.println(this.idOrg);
 		return "success";
 	}
@@ -73,7 +81,8 @@ public class GpProjectManagedBean implements Serializable {
 	}
 
 	public String getProjectPhase() {
-		this.projectId = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+		this.projectId = Integer
+				.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
 
 		this.phaseList = this.phaseService.findByProjectId(Integer.valueOf(projectId));
 		return "success";

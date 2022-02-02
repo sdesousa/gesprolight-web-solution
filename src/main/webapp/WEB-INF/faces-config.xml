@@ -82,6 +82,7 @@
 			<from-action>#{ctrPhaseBean.savePhase}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/listPhases.xhtml</to-view-id>
+			<redirect/>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -92,4 +93,5 @@
 			<to-view-id>/addPhase.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+
 </faces-config>

@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import af.cmr.indyli.gespro.light.business.entity.GpPhase;
@@ -17,7 +16,7 @@ import af.cmr.indyli.gespro.light.business.service.impl.GpPhaseServiceImpl;
 import af.cmr.indyli.gespro.light.business.service.impl.GpProjectServiceImpl;
 
 @ManagedBean(name = "ctrPhaseBean")
-@RequestScoped
+@SessionScoped
 public class GpPhaseManagedBean implements Serializable {
 
 	/**
@@ -30,10 +29,8 @@ public class GpPhaseManagedBean implements Serializable {
 	private List<GpPhase> phaseList = null;
 	private int projectId;
 
-	@ManagedProperty("ctrProjetBean")
-	private GpProjectManagedBean projectManagedBean;
-	
-	
+	private GpProjectManagedBean projectManagedBean = new GpProjectManagedBean();
+
 	public GpPhaseManagedBean() {
 		this.phaseList = this.phaseService.findAll();
 	}
@@ -53,8 +50,12 @@ public class GpPhaseManagedBean implements Serializable {
 
 		List<GpPhase> phases = phaseServiceImpl.findByProjectId(projectId);
 
+		for (GpPhase gpPhase : phases) {
+			System.out.println("PHASE / " + gpPhase.getPhaseCode());
+		}
+
 		projectManagedBean.setPhaseList(phases);
-		
+
 		return "success";
 	}
 
