@@ -63,6 +63,10 @@
 			<from-outcome>success</from-outcome>
 			<to-view-id>/addProject.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{ctrProjetBean.updateProject}</from-action>
+			<to-view-id>/updateProject.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
@@ -73,7 +77,14 @@
 			<to-view-id>/listProjects.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
+	<navigation-rule>
+		<from-view-id>/updateProject.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ctrProjetBean.updateProjectById}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/listProjects.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	<!-- Nav cases Phase -->
 
 	<navigation-rule>

@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import af.cmr.indyli.gespro.light.business.entity.GpOrganization;
@@ -35,7 +34,7 @@ public class GpProjectManagedBean implements Serializable {
 	private GpProjectManager gpProjectManagerDataBean = new GpProjectManager();
 	private IGpProjectService projetService = new GpProjectServiceImpl();
 	private IGpPhaseService phaseService = new GpPhaseServiceImpl();
-	private IGpProjectManagerService<GpProjectManager> empService = new GpProjectManagerServiceImpl();
+	private IGpProjectManagerService<GpProjectManager> pmService = new GpProjectManagerServiceImpl();
 	private IGpOrganizationService<GpOrganization> orgService = new GpOrganizationServiceImpl();
 
 	private List<GpProject> projectList = null;
@@ -45,29 +44,27 @@ public class GpProjectManagedBean implements Serializable {
 	private GpOrganization org;
 
 	private Integer idOrg;
-	private String idEmp;
+	private Integer idPm;
 	private int projectId;
 
 	public GpProjectManagedBean() {
 		this.org = new GpOrganization();
 		this.projectList = this.projetService.findAll();
 		this.organizations = this.orgService.findAll();
-		this.projectManagers = this.empService.findAll();
+		this.projectManagers = this.pmService.findAll();
 	}
 
 	public String saveProject() throws GesproBusinessException {
 
 		GpOrganization organization = (GpOrganization) orgService.findById(idOrg);
 		this.projectDataBean.setGpOrganization(organization);
-		
-		GpProjectManager manager = new GpProjectManager();
-		manager.setId(1);
-		
+
+		GpProjectManager manager = (GpProjectManager) this.pmService.findById(idPm);
 		this.projectDataBean.setGpChefProjet(manager);
+
 		this.projetService.create(this.projectDataBean);
 		this.projectList = this.projetService.findAll();
 
-		System.out.println(this.idOrg);
 		return "success";
 	}
 
@@ -76,8 +73,34 @@ public class GpProjectManagedBean implements Serializable {
 		return "success";
 	}
 
-	public String updateProject() {
+	public String updateProject() throws GesproBusinessException {
+		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+		this.projectDataBean = this.projetService.findById(Integer.valueOf(id));
+		this.idOrg = this.projectDataBean.getGpOrganization().getId();
+		this.idPm = this.projectDataBean.getGpChefProjet().getId();
 		return "succcess";
+	}
+
+	public String updateProjectById() throws GesproBusinessException {
+
+		GpOrganization organization = (GpOrganization) orgService.findById(idOrg);
+		this.projectDataBean.setGpOrganization(organization);
+
+		GpProjectManager manager = (GpProjectManager) this.pmService.findById(idPm);
+		this.projectDataBean.setGpChefProjet(manager);
+
+		this.projetService.update(this.projectDataBean);
+		this.projectList = this.projetService.findAll();
+
+		return "success";
+	}
+
+	public Integer getIdPm() {
+		return idPm;
+	}
+
+	public void setIdPm(Integer idPm) {
+		this.idPm = idPm;
 	}
 
 	public String getProjectPhase() {
@@ -162,14 +185,6 @@ public class GpProjectManagedBean implements Serializable {
 
 	public void setIdOrg(Integer idOrg) {
 		this.idOrg = idOrg;
-	}
-
-	public String getIdEmp() {
-		return idEmp;
-	}
-
-	public void setIdEmp(String idEmp) {
-		this.idEmp = idEmp;
 	}
 
 	public int getProjectId() {

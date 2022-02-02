@@ -71,7 +71,7 @@
 				<h:message for="amount" style="color : red" />
 
 				<!-- Chef Project -->
-				<h:outputText value="#{msg.project_mp}" />
+				
 				<!-- <h:selectOneMenu id="gpProject"
 					value="#{ctrProjetBean.projectDataBean}" styleClass="form-control">
 					<f:selectItems value="#{ctrProjetBean.projectManagers}"
@@ -85,7 +85,7 @@
 				</h:selectOneMenu>
 					-->
 				<!-- Organisation -->
-				<h:outputText value="#{msg.project_org}" />
+				
 				<!-- <h:selectOneMenu id="gpOrganization" value="#{ctrProjetBean.organizationDataBean}" styleClass="form-control" converter="SelectItemToEntityConverter">
 					<f:selectItem itemLabel="Choose Organisation" noSelectionOption="true" />
 					<f:selectItems value="#{ctrProjetBean.organizations}"
@@ -98,13 +98,21 @@
 				    <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
 				    <f:selectItems value="#{ctrProjetBean.organizations}" var="orgs" itemLabel="${orgs.name}" itemValue="#{orgs}" />
 				</h:selectOneMenu>
+				
 				-->
+ 				 <h:outputText value="#{msg.project_mp}" />
+				<h:selectOneMenu   value="#{ctrProjetBean.idPm}" styleClass="form-control">
+				     <f:selectItem itemLabel=" select a Project Manager" itemValue="#{null}"/>
+				     <f:selectItems value="#{ctrProjetBean.projectManagers}" var="pm" itemLabel="#{pm.firstname}" itemValue="#{pm.id}"/>
+				</h:selectOneMenu>
+				
+				<h:outputText value="#{msg.project_org}" />
 				<h:selectOneMenu  value="#{ctrProjetBean.idOrg}" styleClass="form-control">
 				     <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
-				    <f:selectItems value="#{ctrProjetBean.organizations}" var="org" itemLabel="${org.name}" itemValue="#{org.id}" />
+				     <f:selectItems value="#{ctrProjetBean.organizations}" var="org" itemLabel="${org.name}" itemValue="#{org.id}" />
 				</h:selectOneMenu>
-				 
- 				<br/>
+				<br/>
+			
 				<h:commandButton styleClass="btn btn-success" 
 					value="#{msg.submit_button}" action="#{ctrProjetBean.saveProject}" />
 
