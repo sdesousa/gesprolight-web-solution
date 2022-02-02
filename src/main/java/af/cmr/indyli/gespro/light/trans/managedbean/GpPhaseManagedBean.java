@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -29,6 +30,7 @@ public class GpPhaseManagedBean implements Serializable {
 	private List<GpPhase> phaseList = null;
 	private int projectId;
 
+	@ManagedProperty(value = "#{ctrProjetBean}")
 	private GpProjectManagedBean projectManagedBean = new GpProjectManagedBean();
 
 	public GpPhaseManagedBean() {
@@ -47,13 +49,7 @@ public class GpPhaseManagedBean implements Serializable {
 		this.phaseService.create(phaseDataBean);
 
 		GpPhaseServiceImpl phaseServiceImpl = new GpPhaseServiceImpl();
-
 		List<GpPhase> phases = phaseServiceImpl.findByProjectId(projectId);
-
-		for (GpPhase gpPhase : phases) {
-			System.out.println("PHASE / " + gpPhase.getPhaseCode());
-		}
-
 		projectManagedBean.setPhaseList(phases);
 
 		return "success";

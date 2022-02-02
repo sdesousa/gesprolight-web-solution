@@ -7,17 +7,17 @@
   <nodes xsi:type="pageflow:PFPage" name="listPhases.xhtml" x="338" y="1330" id="pf16433570138744" referenceLink="//@navigationRule.6/@fromViewId|" outlinks="pf16437332335340" inlinks="pf16433570138743 pf16437935147103" path="/listPhases.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="addProject.xhtml" id="pf164338511821913" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf164338532681814" inlinks="pf164338511821912" path="/addProject.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="addPhase.xhtml" id="pf16437332335352" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf16437935147103" inlinks="pf16437332335340" path="/addPhase.xhtml"/>
-  <links id="pf16430362400222" target="pf16430362400249" source="pf16430362400211" outcome="success" fromaction="#{ctrEmployeeBean.saveEmployee}"/>
-  <links id="pf164303831249725" target="pf16430362400249" source="pf164303831249726" outcome="success" fromaction="#{ctrEmployeeBean.updateEmployee}"/>
+  <links id="pf16430362400222" target="pf16430362400249" source="pf16430362400211" outcome="success" redirect="true" fromaction="#{ctrEmployeeBean.saveEmployee}"/>
+  <links id="pf164303831249725" target="pf16430362400249" source="pf164303831249726" outcome="success" redirect="true" fromaction="#{ctrEmployeeBean.updateEmployee}"/>
   <links id="pf16431071926980" target="pf164303831249726" source="pf16430362400249" fromaction="#{ctrEmployeeBean.updateEmpById}"/>
   <links id="pf16433570138743" target="pf16433570138744" source="pf164303834875637" outcome="success" fromaction="#{ctrProjetBean.getProjectPhase}"/>
-  <links id="pf16433570138742" target="pf16430362400249" source="pf16430362400249" outcome="success" fromaction="#{ctrEmployeeBean.deleteEmpById}">
+  <links id="pf16433570138742" target="pf16430362400249" source="pf16430362400249" outcome="success" redirect="true" fromaction="#{ctrEmployeeBean.deleteEmpById}">
     <bendPoints d1Height="-36" d2Height="-36"/>
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
   <links id="pf164338511821912" target="pf164338511821913" source="pf164303834875637" outcome="success" fromaction="#{ctrProjetBean.addProject}"/>
-  <links id="pf164338532681814" target="pf164303834875637" source="pf164338511821913" outcome="success" fromaction="#{ctrProjetBean.saveProject}"/>
+  <links id="pf164338532681814" target="pf164303834875637" source="pf164338511821913" outcome="success" redirect="true" fromaction="#{ctrProjetBean.saveProject}"/>
   <links id="pf16437332335340" target="pf16437332335352" source="pf16433570138744" outcome="success" fromaction="#{ctrPhaseBean.addPhase}"/>
   <links id="pf16437935147103" target="pf16433570138744" source="pf16437332335352" outcome="success" redirect="true" fromaction="#{ctrPhaseBean.savePhase}"/>
 </pageflow:Pageflow>
