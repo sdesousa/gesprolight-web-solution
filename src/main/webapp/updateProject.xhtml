@@ -43,7 +43,7 @@
 				<h:message for="description" style="color : red" />
 
 				<!-- 				Input start date -->
-				<h:outputText value="#{msg.startDate}" />
+				<h:outputText value="#{msg.project_startDate}" />
 				<h:inputText type="date"
 					value="#{ctrProjetBean.projectDataBean.startDate}"
 					class="form-control" id="startDate" required="true">
@@ -54,7 +54,7 @@
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:outputText>
 				<!-- End Date -->
-				<h:outputText value="#{msg.endDate}" />
+				<h:outputText value="#{msg.project_endDate}" />
 				<h:inputText type="date"
 					value="#{ctrProjetBean.projectDataBean.endDate}"
 					class="form-control" id="endDate" required="true">

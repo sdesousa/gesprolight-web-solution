@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -36,7 +35,7 @@ public class GpProjectManagedBean implements Serializable {
 	private IGpProjectService projetService = new GpProjectServiceImpl();
 	private IGpPhaseService phaseService = new GpPhaseServiceImpl();
 	private IGpProjectManagerService<GpProjectManager> pmService = new GpProjectManagerServiceImpl();
-	private IGpOrganizationService<GpOrganization> orgService = new GpOrganizationServiceImpl();
+	private IGpOrganizationService orgService = new GpOrganizationServiceImpl();
 
 	private List<GpProject> projectList = null;
 	private List<GpPhase> phaseList = null;
