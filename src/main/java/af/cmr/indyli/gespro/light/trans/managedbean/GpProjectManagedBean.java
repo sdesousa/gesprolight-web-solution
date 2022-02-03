@@ -69,7 +69,9 @@ public class GpProjectManagedBean implements Serializable {
 	}
 
 	public String addProject() {
-
+		this.idOrg = null;
+		this.idPm = null;
+		this.projectDataBean = null;
 		return "success";
 	}
 
