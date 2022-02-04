@@ -28,8 +28,9 @@
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.fileNumber}" required="true"
 					id="fileNumber"
-					requiredMessage="#{msg.register_filenumber_required}" />
-				<h:message for="fileNumber" style="color : red" />
+					requiredMessage="#{msg.register_filenumber_required}" 
+					validator="#{ctrEmployeeBean.validateFileNumber}"
+					/>
 
 
 				<h:outputText value="#{msg.register_firstname}" />
@@ -43,22 +44,18 @@
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.lastname}" required="true"
 					id="nom" />
-				<h:message for="nom" style="color : red" />
-
+				
 
 				<h:outputText value="#{msg.register_mail}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.email}" required="true"
 					validator="#{ctrEmployeeBean.validateEmail}" id="email" />
-				<h:message for="email" />
-
+				
 
 				<h:outputText value="#{msg.register_login}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.login}" required="true"
-					id="login" />
-				<h:message for="login" />
-
+					id="login" validator="#{ctrEmployeeBean.validateLogin}" />
 
 				<h:outputText value="#{msg.register_password}" />
 				<h:inputText styleClass="form-control"
@@ -72,13 +69,14 @@
 					value="#{ctrEmployeeBean.empDataBean.phoneNumber}" required="true"
 					id="phoneNumber" />
 				<h:message for="phoneNumber" />
-
-
-				<br/>
-					<h:commandButton styleClass="btn btn-success"
-						value="#{msg.register_submit_button}"
-						action="#{ctrEmployeeBean.saveEmployee}" />
 				
+				<h:messages id="errors" style="color:red;margin:8px;" />
+				
+				<br />
+				<h:commandButton styleClass="btn btn-success"
+					value="#{msg.register_submit_button}"
+					action="#{ctrEmployeeBean.saveEmployee}" />
+
 			</h:form>
 		</div>
 	</div>

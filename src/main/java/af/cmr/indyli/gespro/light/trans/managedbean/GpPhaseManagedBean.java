@@ -1,12 +1,16 @@
 package af.cmr.indyli.gespro.light.trans.managedbean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import af.cmr.indyli.gespro.light.business.entity.GpPhase;
 import af.cmr.indyli.gespro.light.business.entity.GpProject;
@@ -59,6 +63,17 @@ public class GpPhaseManagedBean implements Serializable {
 		projectId = Integer.valueOf(
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("projectId"));
 		return "success";
+	}
+
+	public void validationDateDebut(FacesContext context, UIComponent toValidate, Date value) throws ValidatorException {
+		
+		GpProject p = this.projectService.findById(projectId);
+		Date dateDebut = value;
+
+		if (dateDebut.before(p.getCreationDate())) {
+			FacesMessage message = new FacesMessage("Une phase ne peut etre créer avant le projet correspondant !");
+			throw new ValidatorException(message);
+		}
 	}
 
 	public void setPhaseDataBean(GpPhase phaseDataBean) {

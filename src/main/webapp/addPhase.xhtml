@@ -19,38 +19,41 @@
 				<h4>
 					<h:outputText value="#{msg.add_phase_msg}" />
 				</h4>
+
 				<h:inputHidden styleClass="form-control"
 					value="#{ctrPhaseBean.projectId}" required="true" id="idProject" />
-				<br/><h:outputText value="#{msg.code_phase}" />
+
+				<h:outputText value="#{msg.code_phase}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.phaseCode}" required="true"
 					id="phaseCode" />
-				<h:message for="paseCode" style="color : red" />
 
-				<br/><h:outputText value="#{msg.description}" />
+
+				<h:message for="phaseCode" style="color : red" />
+				<br />
+				<h:outputText value="#{msg.description}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.description}" required="true"
-					id="description" requiredMessage="#{msg.phase_description_msg}"/>
-
+					id="description" requiredMessage="#{msg.phase_description_msg}" />
 				<h:message for="description" style="color : red" />
 
-				<br/><h:outputText value="#{msg.startDate}" />
+				<br />
+				<h:outputText value="#{msg.startDate}" />
 				<h:inputText value="#{ctrPhaseBean.phaseDataBean.startDate}"
-					class="form-control" id="startDate" required="true">
+					class="form-control" id="startDate" required="true"
+					validator="#{ctrPhaseBean.validationDateDebut}">
 					<f:convertDateTime pattern="yyyy-MM-dd" />
+
 				</h:inputText>
+				<h:message for="startDate" style="color : red" />
 
-				<h:message for="startDate" />
-
-				<br/><h:outputText value="#{msg.endDate}" />
+				<br />
+				<h:outputText value="#{msg.endDate}" />
 				<h:inputText type="date" class="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.endDate}" required="true"
 					id="endDate">
-
 					<f:convertDateTime pattern="yyyy-MM-dd" />
-				
 				</h:inputText>
-
 				<h:message for="endDate" style="color : red" />
 
 				<h:outputText value="#{msg.amount}" />
@@ -59,12 +62,15 @@
 					id="amount" converter="javax.faces.Double">
 				</h:inputText>
 
-				<br/><h:outputText value="#{msg.status}" />
+				<br />
+				<h:outputText value="#{msg.status}" />
 				<h:inputText class="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.status}" required="true"
 					id="status">
 				</h:inputText>
-				<br/><h:outputText value="#{msg.isended}" />
+
+				<br />
+				<h:outputText value="#{msg.isended}" />
 				<h:inputText class="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.isEnded}" required="true"
 					id="isEnded">
@@ -72,6 +78,7 @@
 				<br />
 				<h:commandButton styleClass="btn btn-success"
 					value="#{msg.bnt_success}" action="#{ctrPhaseBean.savePhase}" />
+				<h:messages></h:messages>
 			</h:form>
 		</div>
 	</div>
