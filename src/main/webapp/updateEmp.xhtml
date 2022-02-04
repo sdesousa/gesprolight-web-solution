@@ -26,57 +26,47 @@
 				<h:inputHidden value="#{ctrEmployeeBean.empDataBean.id}"
 					required="true" id="id" />
 
-				<h:outputText value="#{msg.register_file_number}" />
-				<h:inputText styleClass="form-control"
+				<h:inputHidden styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.fileNumber}" required="true"
 					id="fileNumber"
 					requiredMessage="#{msg.register_filenumber_required}" />
-				<h:message for="fileNumber" style="color : red" />
-
-
+				<br />
+				
 				<h:outputText value="#{msg.register_firstname}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.firstname}" required="true"
 					id="prenom" requiredMessage="#{msg.register_prenom_required}" />
 				<h:message for="prenom" style="color : red" />
 
-
+				<br />
 				<h:outputText value="#{msg.register_name}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.lastname}" required="true"
 					id="nom" />
-				<h:message for="nom" style="color : red" />
 
-
-				<h:outputText value="#{msg.register_mail}" />
-				<h:inputText styleClass="form-control"
+				<h:inputHidden styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.email}" required="true"
-					validator="#{ctrEmployeeBean.validateEmail}" id="email" />
-				<h:message for="email" />
+					id="email" />
 
-
-				<h:outputText value="#{msg.register_login}" />
-				<h:inputText styleClass="form-control"
+				<h:inputHidden styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.login}" required="true"
 					id="login" />
-				<h:message for="login" />
-
 
 				<h:outputText value="#{msg.register_password}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.password}" required="true"
 					id="password" type="password" />
-				<h:message for="password" />
 
-
+				<br />
 				<h:outputText value="#{msg.register_phone_number}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrEmployeeBean.empDataBean.phoneNumber}" required="true"
 					id="phoneNumber" />
 				<h:message for="phoneNumber" />
 
-
+				<h:messages id="errors" style="color:red;margin:8px;" />
 				<br />
+
 				<h:commandButton styleClass="btn btn-success"
 					value="#{msg.btn_update}"
 					action="#{ctrEmployeeBean.updateEmployee}" />

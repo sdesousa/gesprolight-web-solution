@@ -21,12 +21,6 @@
 		</h3>
 		<div class="form-group">
 			<h:form>
-				<!-- Input code project -->
-				<h:outputText value="#{msg.projectCode}" />
-				<h:inputText styleClass="form-control"
-					value="#{ctrProjetBean.projectDataBean.projectCode}"
-					required="true" id="projectCode" />
-				<h:message for="projectCode" />
 
 				<!-- Input name -->
 				<h:outputText value="#{msg.name}" />
@@ -70,51 +64,31 @@
 					requiredMessage="#{msg.register_project_amont_required}" />
 				<h:message for="amount" style="color : red" />
 
-				<!-- Chef Project -->
-				
-				<!-- <h:selectOneMenu id="gpProject"
-					value="#{ctrProjetBean.projectDataBean}" styleClass="form-control">
-					<f:selectItems value="#{ctrProjetBean.projectManagers}"
-						var="project" itemLabel="#{project.firstname}" />
-				</h:selectOneMenu> -->
-				
-				<!--  
-				<h:selectOneMenu id="gpProjectManager" value="#{ctrProjetBean.gpProjectManagerDataBean}" styleClass="form-control" converter="SelectItemToEntityConverter2">
-				     <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
-				    <f:selectItems value="#{ctrProjetBean.projectManagers}" var="pm" itemLabel="#{pm.firstname}" itemValue="#{pm}"/>
+				<h:outputText value="#{msg.project_mp}" />
+				<h:selectOneMenu value="#{ctrProjetBean.idPm}"
+					styleClass="form-control">
+					<f:selectItem itemLabel=" select a Project Manager"
+						itemValue="#{null}" />
+					<f:selectItems value="#{ctrProjetBean.projectManagers}" var="pm"
+						itemLabel="#{pm.firstname}" itemValue="#{pm.id}" />
 				</h:selectOneMenu>
-					-->
-				<!-- Organisation -->
-				
-				<!-- <h:selectOneMenu id="gpOrganization" value="#{ctrProjetBean.organizationDataBean}" styleClass="form-control" converter="SelectItemToEntityConverter">
-					<f:selectItem itemLabel="Choose Organisation" noSelectionOption="true" />
-					<f:selectItems value="#{ctrProjetBean.organizations}"
-						var="organization" itemLabel="#{organization.name}" />
 
-				</h:selectOneMenu> --> 
-				
-				<!-- 
-				<h:selectOneMenu  value="#{ctrProjetBean.org}" converter="SelectItemToEntityConverter" styleClass="form-control">
-				    <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
-				    <f:selectItems value="#{ctrProjetBean.organizations}" var="orgs" itemLabel="${orgs.name}" itemValue="#{orgs}" />
+				<h:outputText value="#{msg.project_org}" />
+				<h:selectOneMenu value="#{ctrProjetBean.idOrg}"
+					styleClass="form-control">
+					<f:selectItem itemLabel=" select an organisation"
+						itemValue="#{null}" />
+					<f:selectItems value="#{ctrProjetBean.organizations}" var="org"
+						itemLabel="${org.name}" itemValue="#{org.id}" />
 				</h:selectOneMenu>
-				
-				-->
- 				 <h:outputText value="#{msg.project_mp} : #{ctrProjetBean.projectDataBean.gpChefProjet.firstname}" />
-				<h:selectOneMenu   value="#{ctrProjetBean.idPm}" styleClass="form-control">
-				     <f:selectItem itemLabel=" select a Project Manager" itemValue="#{null}"/>
-				     <f:selectItems value="#{ctrProjetBean.projectManagers}" var="pm" itemLabel="#{pm.firstname}" itemValue="#{pm.id}"/>
-				</h:selectOneMenu>
-				
-				<h:outputText value="#{msg.project_org} : #{ctrProjetBean.projectDataBean.gpOrganization.name}" />
-				<h:selectOneMenu  value="#{ctrProjetBean.idOrg}" styleClass="form-control">
-				     <f:selectItem itemLabel=" select an organisation" itemValue="#{null}"/>
-				     <f:selectItems value="#{ctrProjetBean.organizations}" var="org" itemLabel="${org.name}" itemValue="#{org.id}" />
-				</h:selectOneMenu>
-				<br/>
-			
-				<h:commandButton styleClass="btn btn-success" 
-					value="#{msg.submit_button}" action="#{ctrProjetBean.updateProjectById}" />
+				<br />
+
+				<h:messages id="errors" style="color:red;margin:8px;" />
+
+
+				<h:commandButton styleClass="btn btn-success"
+					value="#{msg.submit_button}"
+					action="#{ctrProjetBean.updateProjectById}" />
 
 			</h:form>
 		</div>

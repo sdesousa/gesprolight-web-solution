@@ -45,12 +45,19 @@ public class GpPhaseManagedBean implements Serializable {
 		return phaseDataBean;
 	}
 
-	public String savePhase() throws GesproBusinessException {
+	public String savePhase() {
 		GpProject gpProject = new GpProject();
 		gpProject = this.projectService.findById(projectId);
 
 		this.phaseDataBean.setGpProject(gpProject);
-		this.phaseService.create(phaseDataBean);
+		try {
+			this.phaseService.create(phaseDataBean);
+		} catch (GesproBusinessException e) {
+			FacesMessage message = new FacesMessage(e.getMessage());
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		
+			return "errors";
+		}
 
 		GpPhaseServiceImpl phaseServiceImpl = new GpPhaseServiceImpl();
 		List<GpPhase> phases = phaseServiceImpl.findByProjectId(projectId);
@@ -65,8 +72,9 @@ public class GpPhaseManagedBean implements Serializable {
 		return "success";
 	}
 
-	public void validationDateDebut(FacesContext context, UIComponent toValidate, Date value) throws ValidatorException {
-		
+	public void validationDateDebut(FacesContext context, UIComponent toValidate, Date value)
+			throws ValidatorException {
+
 		GpProject p = this.projectService.findById(projectId);
 		Date dateDebut = value;
 

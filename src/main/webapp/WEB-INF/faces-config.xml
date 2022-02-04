@@ -80,6 +80,12 @@
 			<to-view-id>/listProjects.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{ctrProjetBean.saveProject}</from-action>
+			<from-outcome>errors</from-outcome>
+			<to-view-id>/addProject.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/updateProject.xhtml</from-view-id>
@@ -97,6 +103,12 @@
 			<from-action>#{ctrPhaseBean.savePhase}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/listPhases.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{ctrPhaseBean.savePhase}</from-action>
+			<from-outcome>errors</from-outcome>
+			<to-view-id>/addPhase.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

@@ -3,10 +3,15 @@ package af.cmr.indyli.gespro.light.trans.managedbean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
+import af.cmr.indyli.gespro.light.business.dao.IGpProjectDAO;
+import af.cmr.indyli.gespro.light.business.dao.impl.GpProjectDAOImpl;
 import af.cmr.indyli.gespro.light.business.entity.GpOrganization;
 import af.cmr.indyli.gespro.light.business.entity.GpPhase;
 import af.cmr.indyli.gespro.light.business.entity.GpProject;
@@ -54,7 +59,7 @@ public class GpProjectManagedBean implements Serializable {
 		this.projectManagers = this.pmService.findAll();
 	}
 
-	public String saveProject() throws GesproBusinessException {
+	public String saveProject() throws ValidatorException {
 
 		GpOrganization organization = (GpOrganization) orgService.findById(idOrg);
 		this.projectDataBean.setGpOrganization(organization);
@@ -62,7 +67,14 @@ public class GpProjectManagedBean implements Serializable {
 		GpProjectManager manager = (GpProjectManager) this.pmService.findById(idPm);
 		this.projectDataBean.setGpChefProjet(manager);
 
-		this.projetService.create(this.projectDataBean);
+		try {
+			this.projetService.create(this.projectDataBean);
+		} catch (GesproBusinessException e) {
+
+			FacesMessage message = new FacesMessage(e.getMessage());
+			throw new ValidatorException(message);
+
+		}
 		this.projectList = this.projetService.findAll();
 
 		return "success";
@@ -93,6 +105,16 @@ public class GpProjectManagedBean implements Serializable {
 		this.projectList = this.projetService.findAll();
 
 		return "success";
+	}
+
+	public void validateCode(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
+		String code = (String) value;
+		IGpProjectDAO dao = new GpProjectDAOImpl();
+
+		if (dao.ifProjectByCode(code)) {
+			FacesMessage message = new FacesMessage("Un projet ayant ce code existe !");
+			throw new ValidatorException(message);
+		}
 	}
 
 	public Integer getIdPm() {
