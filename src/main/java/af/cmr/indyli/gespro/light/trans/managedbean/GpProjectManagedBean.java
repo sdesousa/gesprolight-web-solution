@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
@@ -72,7 +73,9 @@ public class GpProjectManagedBean implements Serializable {
 		} catch (GesproBusinessException e) {
 
 			FacesMessage message = new FacesMessage(e.getMessage());
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			throw new ValidatorException(message);
+		//	return "errors";
 
 		}
 		this.projectList = this.projetService.findAll();
@@ -109,6 +112,8 @@ public class GpProjectManagedBean implements Serializable {
 		return "success";
 	}
 
+	// Debut validation
+
 	public void validateCode(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
 		String code = (String) value;
 		IGpProjectDAO dao = new GpProjectDAOImpl();
@@ -118,6 +123,18 @@ public class GpProjectManagedBean implements Serializable {
 			throw new ValidatorException(message);
 		}
 	}
+
+	public void validateEndDate(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
+
+		Object startDate = ((UIInput) context.getViewRoot().findComponent("addproject:startDate"))
+				.getSubmittedValue();
+		Object endDate = ((UIInput) context.getViewRoot().findComponent("addproject:endDate"))
+				.getSubmittedValue();
+		
+		System.out.println(startDate.toString() + " DDD " + endDate);
+	}
+
+	// Fin validation
 
 	public Integer getIdPm() {
 		return idPm;

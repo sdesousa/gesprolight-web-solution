@@ -20,13 +20,14 @@
 			<h:outputText value="#{msg.ajout_project_text}" />
 		</h3>
 		<div class="form-group">
-			<h:form>  
+			<h:form>
 				<!-- Input code project -->
 				<h:outputText value="#{msg.projectCode}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrProjetBean.projectDataBean.projectCode}"
-					required="true" id="projectCode" validator="#{ctrProjetBean.validateCode}" />
-				
+					required="true" id="projectCode"
+					validator="#{ctrProjetBean.validateCode}" />
+
 				<!-- Input name -->
 				<h:outputText value="#{msg.name}" />
 				<h:inputText styleClass="form-control"
@@ -45,8 +46,9 @@
 					value="#{ctrProjetBean.projectDataBean.startDate}"
 					class="form-control" id="startDate" required="true">
 					<f:convertDateTime pattern="dd-MM-yyyy" />
+					<f:attribute name="startDate"
+						value="ctrProjetBean.projectDataBean.startDate"></f:attribute>
 				</h:inputText>
-				
 				<h:outputText value="#{ctrProjetBean.projectDataBean.startDate}">
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:outputText>
@@ -58,6 +60,8 @@
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:inputText>
 
+				<h:inputHidden validator="#{ctrProjetBean.validateEndDate}">
+				</h:inputHidden>
 				<!-- Montant -->
 				<h:outputText value="#{msg.amount}" />
 				<h:inputText styleClass="form-control"
@@ -83,7 +87,7 @@
 						itemLabel="${org.name}" itemValue="#{org.id}" />
 				</h:selectOneMenu>
 				<br />
-				
+
 				<h:messages id="errors" style="color:red;margin:8px;" />
 				<h:commandButton styleClass="btn btn-success"
 					value="#{msg.submit_button}" action="#{ctrProjetBean.saveProject}" />
