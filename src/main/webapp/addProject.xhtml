@@ -32,14 +32,12 @@
 				<h:inputText styleClass="form-control"
 					value="#{ctrProjetBean.projectDataBean.name}" required="true"
 					id="name" />
-				<h:message for="name" />
 
 				<!-- Description -->
 				<h:outputText value="#{msg.description}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrProjetBean.projectDataBean.description}"
 					required="true" id="description" />
-				<h:message for="description" style="color : red" />
 
 				<!-- 				Input start date -->
 				<h:outputText value="#{msg.project_startDate}" />
@@ -48,7 +46,7 @@
 					class="form-control" id="startDate" required="true">
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:inputText>
-				<h:message for="startDate" />
+				
 				<h:outputText value="#{ctrProjetBean.projectDataBean.startDate}">
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:outputText>
@@ -59,7 +57,6 @@
 					class="form-control" id="endDate" required="true">
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:inputText>
-				<h:message for="endDate" style="color : red" />
 
 				<!-- Montant -->
 				<h:outputText value="#{msg.amount}" />
@@ -67,7 +64,6 @@
 					value="#{ctrProjetBean.projectDataBean.amount}" required="true"
 					id="amount"
 					requiredMessage="#{msg.register_project_amont_required}" />
-				<h:message for="amount" style="color : red" />
 
 				<h:outputText value="#{msg.project_mp}" />
 				<h:selectOneMenu value="#{ctrProjetBean.idPm}"
@@ -87,9 +83,8 @@
 						itemLabel="${org.name}" itemValue="#{org.id}" />
 				</h:selectOneMenu>
 				<br />
-
+				
 				<h:messages id="errors" style="color:red;margin:8px;" />
-
 				<h:commandButton styleClass="btn btn-success"
 					value="#{msg.submit_button}" action="#{ctrProjetBean.saveProject}" />
 

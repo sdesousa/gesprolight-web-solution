@@ -28,33 +28,27 @@
 					value="#{ctrPhaseBean.phaseDataBean.phaseCode}" required="true"
 					id="phaseCode" />
 
-
-				<h:message for="phaseCode" style="color : red" />
 				<br />
 				<h:outputText value="#{msg.description}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.description}" required="true"
 					id="description" requiredMessage="#{msg.phase_description_msg}" />
-				<h:message for="description" style="color : red" />
 
 				<br />
-				<h:outputText value="#{msg.startDate}" />
+				<h:outputText value="#{msg.startDateForm}" />
 				<h:inputText value="#{ctrPhaseBean.phaseDataBean.startDate}"
 					class="form-control" id="startDate" required="true"
 					validator="#{ctrPhaseBean.validationDateDebut}">
 					<f:convertDateTime pattern="yyyy-MM-dd" />
-
 				</h:inputText>
-				<h:message for="startDate" style="color : red" />
 
 				<br />
-				<h:outputText value="#{msg.endDate}" />
+				<h:outputText value="#{msg.endDateForm}" />
 				<h:inputText type="date" class="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.endDate}" required="true"
 					id="endDate">
 					<f:convertDateTime pattern="yyyy-MM-dd" />
 				</h:inputText>
-				<h:message for="endDate" style="color : red" />
 
 				<h:outputText value="#{msg.amount}" />
 				<h:inputText class="form-control"
@@ -76,10 +70,12 @@
 					id="isEnded">
 				</h:inputText>
 				<br />
+
 				<h:messages id="errors" style="color:red;margin:8px;" />
+
 				<h:commandButton styleClass="btn btn-success"
 					value="#{msg.bnt_success}" action="#{ctrPhaseBean.savePhase}" />
-				
+
 			</h:form>
 		</div>
 	</div>
