@@ -18,11 +18,11 @@
 }
 </style>
 	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
 </h:head>
 <h:body>
 
-	<ui:include src="nav.xhtml"></ui:include>  
+	<ui:include src="nav.xhtml"></ui:include>
 	<div class="container">
 		<h3>
 			<h:outputText value="#{msg.greeting_text}" />
@@ -37,8 +37,7 @@
 			<h:form>
 				<p class="col-md-6 bg-light text-right">
 					<h:commandButton styleClass="btn btn-success"
-						action="#{ctrPhaseBean.addPhase}"
-						value="#{msg.btn_add}">
+						action="#{ctrPhaseBean.addPhase}" value="#{msg.btn_add}">
 						<f:param name="projectId" value="#{ctrProjetBean.projectId}" />
 					</h:commandButton>
 				</p>
@@ -46,7 +45,12 @@
 		</div>
 		<h:dataTable value="#{ctrProjetBean.phaseList}" var="projectphase"
 			class="table table-striped table-hover table-bordered tableUpdated">
-
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg.projectCode}" />
+				</f:facet>
+    				#{projectphase.phaseCode}
+    		</h:column>
 			<h:column>
 				<!-- column header -->
 				<f:facet name="header">
@@ -61,42 +65,41 @@
 				</f:facet>
     				#{projectphase.description}
     		</h:column>
+
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg.projectCode}" />
-				</f:facet>
-    				#{projectphase.phaseCode}
-    		</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="#{msg.creationDate}" />
+					<h:outputText value="#{msg.startDate}" />
 				</f:facet>
     				#{projectphase.startDate}
-    		</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="#{msg.endDate}" />
-				</f:facet>
-    				#{projectphase.endDate}
     		</h:column>
 
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#{msg.status}" />
+					<h:outputText value="#{msg.endDate}" />
 				</f:facet>
-    			
-    				#{projectphase.status}
+    				#{projectphase.endDate} 
     		</h:column>
 			<h:column>
 				<f:facet name="header">
+					<h:outputText value="#{msg.status}" />
+				</f:facet>
+				<h:outputText
+					value=" #{projectphase.status == 2 ? msg.status_finished : ''} #{projectphase.status == 0 ? msg.status_en_attente : ''} #{projectphase.status == 1 ? msg.status_encours : ''} " />
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">
 					<h:outputText value="#{msg.isended}" />
-				</f:facet> 
-    				#{projectphase.isEnded}
-    		</h:column>
+				</f:facet>
+				<h:outputText
+					value=" #{projectphase.isEnded == 1 ? msg.isEndedYes:  msg.isEndedNo}" />
+			</h:column>
+
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="#{msg.creationDate}" />
 				</f:facet>
+				
     				#{projectphase.creationDate}
     		</h:column>
 			<h:column>

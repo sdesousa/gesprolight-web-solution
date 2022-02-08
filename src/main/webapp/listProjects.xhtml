@@ -31,13 +31,20 @@
 
 		<h:form>
 			<p class="col-md-12 bg-light text-right">
-				<h:commandButton value="Ajouter" action="#{ctrProjetBean.addProject}"
-					styleClass="btn btn-success" />
+				<h:commandButton value="Ajouter"
+					action="#{ctrProjetBean.addProject}" styleClass="btn btn-success" />
 
 			</p>
-			
+
 			<h:dataTable value="#{ctrProjetBean.projectList}" var="proj"
 				class="table table-striped table-hover table-bordered tableUpdated">
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg.project_projectCode}" />
+					</f:facet>
+    				#{proj.projectCode}
+    		</h:column>
 				<h:column>
 					<!-- column header -->
 					<f:facet name="header">
@@ -60,9 +67,9 @@
     		</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="#{msg.project_creationDate}" />
+						<h:outputText value="#{msg.startDate}" />
 					</f:facet>
-    				#{proj.creationDate}
+    				#{proj.startDate}
     		</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -70,17 +77,12 @@
 					</f:facet>
     				#{proj.endDate}
     		</h:column>
+
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="#{msg.project_projectCode}" />
+						<h:outputText value="#{msg.project_creationDate}" />
 					</f:facet>
-    				#{proj.projectCode}
-    		</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg.startDate}" />
-					</f:facet>
-    				#{proj.startDate}
+    				#{proj.creationDate}
     		</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -93,10 +95,9 @@
 						<h:outputText value="#{msg.btn_tab}" />
 					</f:facet>
 					<h:commandButton action="#{ctrProjetBean.updateProject}"
-						styleClass="btn btn-primary btn-space"
-						 value="#{msg.btn_update}" >
-						 <f:param name="id" value="#{proj.id}" />
-				      </h:commandButton>
+						styleClass="btn btn-primary btn-space" value="#{msg.btn_update}">
+						<f:param name="id" value="#{proj.id}" />
+					</h:commandButton>
 					<h:commandButton value="phases"
 						action="#{ctrProjetBean.getProjectPhase}"
 						styleClass="btn btn-primary btn-space">

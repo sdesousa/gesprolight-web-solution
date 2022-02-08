@@ -28,21 +28,20 @@
 					value="#{ctrPhaseBean.phaseDataBean.phaseCode}" required="true"
 					id="phaseCode" />
 
-				<br />
+
 				<h:outputText value="#{msg.description}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.description}" required="true"
 					id="description" requiredMessage="#{msg.phase_description_msg}" />
 
-				<br />
+
 				<h:outputText value="#{msg.startDateForm}" />
 				<h:inputText value="#{ctrPhaseBean.phaseDataBean.startDate}"
-					class="form-control" id="startDate" required="true"
-					validator="#{ctrPhaseBean.validationDateDebut}">
+					class="form-control" id="startDate" required="true">
 					<f:convertDateTime pattern="yyyy-MM-dd" />
 				</h:inputText>
 
-				<br />
+
 				<h:outputText value="#{msg.endDateForm}" />
 				<h:inputText type="date" class="form-control"
 					value="#{ctrPhaseBean.phaseDataBean.endDate}" required="true"
@@ -56,19 +55,23 @@
 					id="amount" converter="javax.faces.Double">
 				</h:inputText>
 
-				<br />
-				<h:outputText value="#{msg.status}" />
-				<h:inputText class="form-control"
-					value="#{ctrPhaseBean.phaseDataBean.status}" required="true"
-					id="status">
-				</h:inputText>
 
-				<br />
+				<h:outputText value="#{msg.status}" />
+				<h:selectOneMenu value="#{ctrPhaseBean.phaseDataBean.status}"
+					styleClass="form-control" required="true">
+					<f:selectItem itemLabel="#{msg.status_en_attente}" itemValue="#{0}" />
+					<f:selectItem itemLabel="#{msg.status_encours}" itemValue="#{1}" />
+					<f:selectItem itemLabel="#{msg.status_finished}" itemValue="#{2}" />
+				</h:selectOneMenu>
+
+
 				<h:outputText value="#{msg.isended}" />
-				<h:inputText class="form-control"
-					value="#{ctrPhaseBean.phaseDataBean.isEnded}" required="true"
-					id="isEnded">
-				</h:inputText>
+				<h:selectOneMenu value="#{ctrPhaseBean.phaseDataBean.isEnded}"
+					styleClass="form-control" required="true">
+					<f:selectItem itemLabel="#{msg.isEndedYes}" itemValue="#{1}" />
+					<f:selectItem itemLabel="#{msg.isEndedNo}" itemValue="#{0}" />
+				</h:selectOneMenu>
+
 				<br />
 
 				<h:messages id="errors" style="color:red;margin:8px;" />

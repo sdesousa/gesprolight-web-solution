@@ -9,7 +9,7 @@
 
 
 <h:head>
-	<title>Formulaire de Creation des employes</title>
+	<title>Formulaire de Creation d'un employe</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 
 </h:head>
@@ -25,8 +25,7 @@
 				<h:outputText value="#{msg.projectCode}" />
 				<h:inputText styleClass="form-control"
 					value="#{ctrProjetBean.projectDataBean.projectCode}"
-					required="true" id="projectCode"
-					validator="#{ctrProjetBean.validateCode}" />
+					required="true" id="projectCode" />
 
 				<!-- Input name -->
 				<h:outputText value="#{msg.name}" />
@@ -40,18 +39,14 @@
 					value="#{ctrProjetBean.projectDataBean.description}"
 					required="true" id="description" />
 
-				<!-- 				Input start date -->
+				<!-- Input start date -->
 				<h:outputText value="#{msg.project_startDate}" />
 				<h:inputText type="date"
 					value="#{ctrProjetBean.projectDataBean.startDate}"
 					class="form-control" id="startDate" required="true">
 					<f:convertDateTime pattern="dd-MM-yyyy" />
-					<f:attribute name="startDate"
-						value="ctrProjetBean.projectDataBean.startDate"></f:attribute>
 				</h:inputText>
-				<h:outputText value="#{ctrProjetBean.projectDataBean.startDate}">
-					<f:convertDateTime pattern="dd-MM-yyyy" />
-				</h:outputText>
+
 				<!-- End Date -->
 				<h:outputText value="#{msg.project_endDate}" />
 				<h:inputText type="date"
@@ -60,8 +55,6 @@
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:inputText>
 
-				<h:inputHidden validator="#{ctrProjetBean.validateEndDate}">
-				</h:inputHidden>
 				<!-- Montant -->
 				<h:outputText value="#{msg.amount}" />
 				<h:inputText styleClass="form-control"
@@ -69,6 +62,7 @@
 					id="amount"
 					requiredMessage="#{msg.register_project_amont_required}" />
 
+				<!-- ComboBox ProjectManager -->
 				<h:outputText value="#{msg.project_mp}" />
 				<h:selectOneMenu value="#{ctrProjetBean.idPm}"
 					styleClass="form-control">
@@ -78,6 +72,7 @@
 						itemLabel="#{pm.firstname}" itemValue="#{pm.id}" />
 				</h:selectOneMenu>
 
+				<!-- ComboBox Organisation -->
 				<h:outputText value="#{msg.project_org}" />
 				<h:selectOneMenu value="#{ctrProjetBean.idOrg}"
 					styleClass="form-control">

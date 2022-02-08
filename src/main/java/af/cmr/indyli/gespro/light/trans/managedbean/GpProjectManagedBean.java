@@ -6,13 +6,8 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
-import af.cmr.indyli.gespro.light.business.dao.IGpProjectDAO;
-import af.cmr.indyli.gespro.light.business.dao.impl.GpProjectDAOImpl;
 import af.cmr.indyli.gespro.light.business.entity.GpOrganization;
 import af.cmr.indyli.gespro.light.business.entity.GpPhase;
 import af.cmr.indyli.gespro.light.business.entity.GpProject;
@@ -60,7 +55,7 @@ public class GpProjectManagedBean implements Serializable {
 		this.projectManagers = this.pmService.findAll();
 	}
 
-	public String saveProject() throws ValidatorException {
+	public String saveProject() {
 
 		GpOrganization organization = (GpOrganization) orgService.findById(idOrg);
 		this.projectDataBean.setGpOrganization(organization);
@@ -74,12 +69,10 @@ public class GpProjectManagedBean implements Serializable {
 
 			FacesMessage message = new FacesMessage(e.getMessage());
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			throw new ValidatorException(message);
-		//	return "errors";
+			return null;
 
 		}
 		this.projectList = this.projetService.findAll();
-
 		return "success";
 	}
 
@@ -90,6 +83,7 @@ public class GpProjectManagedBean implements Serializable {
 		return "success";
 	}
 
+	// Recharger le formulaire update
 	public String updateProject() throws GesproBusinessException {
 		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
 		this.projectDataBean = this.projetService.findById(Integer.valueOf(id));
@@ -98,7 +92,8 @@ public class GpProjectManagedBean implements Serializable {
 		return "succcess";
 	}
 
-	public String updateProjectById() throws GesproBusinessException {
+	// Appeller la fonction update
+	public String updateProjectById() {
 
 		GpOrganization organization = (GpOrganization) orgService.findById(idOrg);
 		this.projectDataBean.setGpOrganization(organization);
@@ -106,36 +101,19 @@ public class GpProjectManagedBean implements Serializable {
 		GpProjectManager manager = (GpProjectManager) this.pmService.findById(idPm);
 		this.projectDataBean.setGpChefProjet(manager);
 
-		this.projetService.update(this.projectDataBean);
+		try {
+			this.projetService.update(this.projectDataBean);
+		} catch (GesproBusinessException e) {
+			FacesMessage message = new FacesMessage(e.getMessage());
+			FacesContext.getCurrentInstance().addMessage(null, message);
+			return null;
+		}
 		this.projectList = this.projetService.findAll();
 
 		return "success";
 	}
 
-	// Debut validation
-
-	public void validateCode(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
-		String code = (String) value;
-		IGpProjectDAO dao = new GpProjectDAOImpl();
-
-		if (dao.ifProjectByCode(code)) {
-			FacesMessage message = new FacesMessage("Un projet ayant ce code existe !");
-			throw new ValidatorException(message);
-		}
-	}
-
-	public void validateEndDate(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
-
-		Object startDate = ((UIInput) context.getViewRoot().findComponent("addproject:startDate"))
-				.getSubmittedValue();
-		Object endDate = ((UIInput) context.getViewRoot().findComponent("addproject:endDate"))
-				.getSubmittedValue();
-		
-		System.out.println(startDate.toString() + " DDD " + endDate);
-	}
-
-	// Fin validation
-
+	// getters et setters
 	public Integer getIdPm() {
 		return idPm;
 	}

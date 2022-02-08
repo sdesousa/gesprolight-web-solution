@@ -1,16 +1,13 @@
 package af.cmr.indyli.gespro.light.trans.managedbean;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
 import af.cmr.indyli.gespro.light.business.entity.GpPhase;
 import af.cmr.indyli.gespro.light.business.entity.GpProject;
@@ -37,15 +34,21 @@ public class GpPhaseManagedBean implements Serializable {
 	@ManagedProperty(value = "#{ctrProjetBean}")
 	private GpProjectManagedBean projectManagedBean = new GpProjectManagedBean();
 
+	// constructeur
 	public GpPhaseManagedBean() {
 		this.phaseList = this.phaseService.findAll();
 	}
 
-	public GpPhase getPhaseDataBean() {
-		return phaseDataBean;
+	// recupere l'id du project et renvoie vers form add phase
+	public String addPhase() {
+		projectId = Integer.valueOf(
+				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("projectId"));
+		return "success";
 	}
 
+	// appelle create phase
 	public String savePhase() {
+
 		GpProject gpProject = new GpProject();
 		gpProject = this.projectService.findById(projectId);
 
@@ -55,8 +58,8 @@ public class GpPhaseManagedBean implements Serializable {
 		} catch (GesproBusinessException e) {
 			FacesMessage message = new FacesMessage(e.getMessage());
 			FacesContext.getCurrentInstance().addMessage(null, message);
-		
-			return "errors";
+
+			return null;
 		}
 
 		GpPhaseServiceImpl phaseServiceImpl = new GpPhaseServiceImpl();
@@ -66,26 +69,13 @@ public class GpPhaseManagedBean implements Serializable {
 		return "success";
 	}
 
-	public String addPhase() {
-		projectId = Integer.valueOf(
-				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("projectId"));
-		return "success";
-	}
-
-	public void validationDateDebut(FacesContext context, UIComponent toValidate, Date value)
-			throws ValidatorException {
-
-		GpProject p = this.projectService.findById(projectId);
-		Date dateDebut = value;
-
-		if (dateDebut.before(p.getCreationDate())) {
-			FacesMessage message = new FacesMessage("Une phase ne peut etre créer avant le projet correspondant !");
-			throw new ValidatorException(message);
-		}
-	}
-
+//getters and setters
 	public void setPhaseDataBean(GpPhase phaseDataBean) {
 		this.phaseDataBean = phaseDataBean;
+	}
+
+	public GpPhase getPhaseDataBean() {
+		return phaseDataBean;
 	}
 
 	public List<GpPhase> getPhaseList() {
