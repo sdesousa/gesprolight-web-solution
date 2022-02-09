@@ -19,9 +19,17 @@
 					<a class="navbar-brand" href="#">GESPRO-LIGHT</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.xhtml">Home</a></li>
-					<li><a href="empList.xhtml">Employé</a></li>
-					<li><a href="listProjects.xhtml">Projets</a></li>
+					<li class="active"><a href="index.xhtml"><h:outputText value="#{msg.navbar_item_home}" /></a></li>
+					<li><a href="empList.xhtml"><h:outputText value="#{msg.navbar_item_employe}" /></a></li>
+					<li><a href="listProjects.xhtml"><h:outputText value="#{msg.navbar_item_project}" /></a></li>
+					<li>Language :
+					<h:form> 
+					<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+						valueChangeListener="#{language.countryLocaleCodeChanged}">
+			   			<f:selectItems value="#{language.countriesInMap}" /> 
+			   		</h:selectOneMenu>
+			   		</h:form>
+			   		</li>
 				</ul> 
 			</div>
 		</nav>

@@ -4,25 +4,33 @@
   <nodes xsi:type="pageflow:PFPage" name="empList.xhtml" x="338" y="562" id="pf16430362400249" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" outlinks="pf16431071926980 pf16433570138742" inlinks="pf16430362400222 pf164303831249725 pf16433570138742" path="/empList.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="updateEmp.xhtml" x="122" y="562" id="pf164303831249726" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf164303831249725" inlinks="pf16431071926980" path="/updateEmp.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="listProjects.xhtml" x="122" y="1330" id="pf164303834875637" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf16433570138743 pf164338511821912 pf16438176723794" inlinks="pf164338532681814 pf16438209217706" path="/listProjects.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="listPhases.xhtml" x="338" y="1330" id="pf16433570138744" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf16437332335340" inlinks="pf16433570138743 pf16437935147103" path="/listPhases.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="addProject.xhtml" id="pf164338511821913" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf164338532681814" inlinks="pf164338511821912" path="/addProject.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="addPhase.xhtml" id="pf16437332335352" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf16437935147103" inlinks="pf16437332335340" path="/addPhase.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="updateProject.xhtml" id="pf16438176723795" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf16438209217706" inlinks="pf16438176723794" path="/updateProject.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listPhases.xhtml" x="338" y="1714" id="pf16433570138744" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf16437332335340" inlinks="pf16433570138743 pf16437935147103" path="/listPhases.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="addProject.xhtml" x="338" y="946" id="pf164338511821913" referenceLink="//@navigationRule.4/@navigationCase.1/@toViewId|" outlinks="pf164338532681814 pf16443299570210" inlinks="pf164338511821912 pf16443299570210" path="/addProject.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="addPhase.xhtml" x="122" y="1714" id="pf16437332335352" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf16437935147103 pf16443299570211" inlinks="pf16437332335340 pf16443299570211" path="/addPhase.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="updateProject.xhtml" x="338" y="1330" id="pf16438176723795" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf16438209217706" inlinks="pf16438176723794" path="/updateProject.xhtml"/>
   <links id="pf16430362400222" target="pf16430362400249" source="pf16430362400211" outcome="success" redirect="true" fromaction="#{ctrEmployeeBean.saveEmployee}"/>
   <links id="pf164303831249725" target="pf16430362400249" source="pf164303831249726" outcome="success" redirect="true" fromaction="#{ctrEmployeeBean.updateEmployee}"/>
   <links id="pf16431071926980" target="pf164303831249726" source="pf16430362400249" fromaction="#{ctrEmployeeBean.updateEmpById}"/>
   <links id="pf16433570138743" target="pf16433570138744" source="pf164303834875637" outcome="success" fromaction="#{ctrProjetBean.getProjectPhase}"/>
-  <links id="pf16433570138742" target="pf16430362400249" source="pf16430362400249" outcome="success" redirect="true" fromaction="#{ctrEmployeeBean.deleteEmpById}">
-    <bendPoints d1Height="-36" d2Height="-36"/>
-    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
-    <bendPoints d1Width="-64" d2Width="-64"/>
-  </links>
   <links id="pf164338511821912" target="pf164338511821913" source="pf164303834875637" outcome="success" fromaction="#{ctrProjetBean.addProject}"/>
   <links id="pf164338532681814" target="pf164303834875637" source="pf164338511821913" outcome="success" redirect="true" fromaction="#{ctrProjetBean.saveProject}"/>
   <links id="pf16437332335340" target="pf16437332335352" source="pf16433570138744" outcome="success" fromaction="#{ctrPhaseBean.addPhase}"/>
   <links id="pf16437935147103" target="pf16433570138744" source="pf16437332335352" outcome="success" redirect="true" fromaction="#{ctrPhaseBean.savePhase}"/>
   <links id="pf16438176723794" target="pf16438176723795" source="pf164303834875637" fromaction="#{ctrProjetBean.updateProject}"/>
   <links id="pf16438209217706" target="pf164303834875637" source="pf16438176723795" outcome="success" fromaction="#{ctrProjetBean.updateProjectById}"/>
-  <links id="pf16439843430134" target="pf16437332335352" source="pf16437332335352" outcome="errors" redirect="true" fromaction="#{ctrPhaseBean.savePhase}"/>
-  <links id="pf16439849318505" target="pf164338511821913" source="pf164338511821913" outcome="errors" redirect="true" fromaction="#{ctrProjetBean.saveProject}"/>
+  <links id="pf16433570138742" target="pf16430362400249" source="pf16430362400249" outcome="success" redirect="true" fromaction="#{ctrEmployeeBean.deleteEmpById}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf16443299570210" target="pf164338511821913" source="pf164338511821913" outcome="errors" redirect="true" fromaction="#{ctrProjetBean.saveProject}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf16443299570211" target="pf16437332335352" source="pf16437332335352" outcome="errors" redirect="true" fromaction="#{ctrPhaseBean.savePhase}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
 </pageflow:Pageflow>

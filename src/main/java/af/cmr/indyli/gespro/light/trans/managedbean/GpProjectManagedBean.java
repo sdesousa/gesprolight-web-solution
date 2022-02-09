@@ -74,8 +74,8 @@ public class GpProjectManagedBean implements Serializable {
 
 			FacesMessage message = new FacesMessage(e.getMessage());
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			throw new ValidatorException(message);
-		//	return "errors";
+
+			return null;
 
 		}
 		this.projectList = this.projetService.findAll();
@@ -126,11 +126,9 @@ public class GpProjectManagedBean implements Serializable {
 
 	public void validateEndDate(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException {
 
-		Object startDate = ((UIInput) context.getViewRoot().findComponent("addproject:startDate"))
-				.getSubmittedValue();
-		Object endDate = ((UIInput) context.getViewRoot().findComponent("addproject:endDate"))
-				.getSubmittedValue();
-		
+		Object startDate = ((UIInput) context.getViewRoot().findComponent("addproject:startDate")).getSubmittedValue();
+		Object endDate = ((UIInput) context.getViewRoot().findComponent("addproject:endDate")).getSubmittedValue();
+
 		System.out.println(startDate.toString() + " DDD " + endDate);
 	}
 
