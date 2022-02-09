@@ -2,12 +2,18 @@ package af.cmr.indyli.gespro.light.trans.managedbean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
+import af.cmr.indyli.gespro.light.business.dao.IGpProjectDAO;
+import af.cmr.indyli.gespro.light.business.dao.impl.GpProjectDAOImpl;
 import af.cmr.indyli.gespro.light.business.entity.GpOrganization;
 import af.cmr.indyli.gespro.light.business.entity.GpPhase;
 import af.cmr.indyli.gespro.light.business.entity.GpProject;
@@ -47,12 +53,21 @@ public class GpProjectManagedBean implements Serializable {
 	private Integer idOrg;
 	private Integer idPm;
 	private int projectId;
+	private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
 	public GpProjectManagedBean() {
 		this.org = new GpOrganization();
 		this.projectList = this.projetService.findAll();
 		this.organizations = this.orgService.findAll();
 		this.projectManagers = this.pmService.findAll();
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public String getLanguage() {
+		return locale.getLanguage();
 	}
 
 	public String saveProject() {

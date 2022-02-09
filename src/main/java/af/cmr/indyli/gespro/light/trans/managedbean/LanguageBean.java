@@ -19,10 +19,14 @@ public class LanguageBean implements Serializable {
 	private String localeCode;
 
 	private static Map<String, Object> countries;
+	// private String localeCode;
+	private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+
 	static {
 		countries = new LinkedHashMap<String, Object>();
-		countries.put("EN", Locale.ENGLISH); // label, value
 		countries.put("FR", Locale.FRANCE);
+		countries.put("EN", Locale.ENGLISH); // label, value
+
 	}
 
 	public Map<String, Object> getCountriesInMap() {
@@ -52,5 +56,4 @@ public class LanguageBean implements Serializable {
 			}
 		}
 	}
-
 }

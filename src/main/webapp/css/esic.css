@@ -20,3 +20,21 @@
 	background:none repeat scroll 0 0 #F9F9F9;
 	border-top:1px solid #BBBBBB;
 }
+
+#topheader .navbar-nav li > a {
+		  text-transform: capitalize;
+		  color: white;
+		  transition: background-color 0.2s, color 0.2s;
+		}
+		#topheader .navbar-nav li > a:hover, #topheader .navbar-nav li > a:focus {
+		  background-color: #333;
+		  color: #fff;
+		}
+		
+		#topheader .navbar-nav li.active > a {
+		  background-color: white;
+		  color: black;
+		}
+		.languge {
+		  background-color: grey;
+		}

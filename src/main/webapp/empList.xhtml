@@ -20,7 +20,17 @@
 	}
 	</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./css/esic.css"></link>
+   <script> 
+	 $(document).ready(function(){ 
+		 $("#topheader .navbar-nav").find("li.active").removeClass("active");
+		 	   $("#empList").addClass("active");
+		 })   
+	 
+   </script>
 </h:head>
 
 <h:body>
@@ -29,12 +39,15 @@
 		<h3>
 			<h:outputText value="#{msg.greeting_text}" />
 		</h3>
-		<h1>Affichage de la Liste des employes</h1>
+		<h1> <h:outputText value="#{msg.show_employee_list}" /></h1>
 		<h:form>
 
-			<p class="col-md-12 bg-light text-right"><h:commandButton action="/register.xhtml?faces-redirect=true"
-				value="Ajouter"
-				styleClass="btn btn-success" /></p>
+			<p class="col-md-12 bg-light text-right">
+			 <h:commandButton action="/register.xhtml?faces-redirect=true"
+				styleClass="btn btn-success" >
+				<h:outputText value="#{msg.add}" />
+			 </h:commandButton>
+				</p>
 
 
 			<h:dataTable value="#{ctrEmployeeBean.empList}" var="pers"

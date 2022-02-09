@@ -7,32 +7,37 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	<script src="css/jquery.min.js" />
 	<script src="css/bootstrap.min.js" />
-	<script src="js/main.js" />  -->
-	
-   
+	<script src="js/main.js" />  --> 
+
+
 </h:head>
 <h:body>
 	<ui:composition>
+	<div id="topheader">
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">GESPRO-LIGHT</a>
+					<a class="navbar-brand" href="index.xhtml">GESPRO-LIGHT</a>
 				</div>
+				
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.xhtml"><h:outputText value="#{msg.navbar_item_home}" /></a></li>
-					<li><a href="empList.xhtml"><h:outputText value="#{msg.navbar_item_employe}" /></a></li>
-					<li><a href="listProjects.xhtml"><h:outputText value="#{msg.navbar_item_project}" /></a></li>
-					<li>Language :
+  					<li id="empList"><a href="empList.xhtml"><h:outputText value="#{msg.navbar_item_employe}" /></a></li>
+					<li id="listProjects"><a href="listProjects.xhtml"><h:outputText value="#{msg.navbar_item_project}" /></a></li>
+					<li>  <a>
 					<h:form> 
-					<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+					<h:selectOneMenu styleClass="languge" value="#{language.localeCode}" onchange="submit()"
 						valueChangeListener="#{language.countryLocaleCodeChanged}">
 			   			<f:selectItems value="#{language.countriesInMap}" /> 
 			   		</h:selectOneMenu>
-			   		</h:form>
+			   		</h:form></a>
+			   		 
+					
 			   		</li>
+			   		 
 				</ul> 
 			</div>
 		</nav>
+	</div>
 	</ui:composition>
 	
 </h:body>
