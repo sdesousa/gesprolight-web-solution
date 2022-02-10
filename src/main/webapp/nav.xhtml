@@ -23,16 +23,7 @@
 				<ul class="nav navbar-nav">
   					<li id="empList"><a href="empList.xhtml"><h:outputText value="#{msg.navbar_item_employe}" /></a></li>
 					<li id="listProjects"><a href="listProjects.xhtml"><h:outputText value="#{msg.navbar_item_project}" /></a></li>
-					<li>  <a>
-					<h:form> 
-					<h:selectOneMenu styleClass="languge" value="#{language.localeCode}" onchange="submit()"
-						valueChangeListener="#{language.countryLocaleCodeChanged}">
-			   			<f:selectItems value="#{language.countriesInMap}" /> 
-			   		</h:selectOneMenu>
-			   		</h:form></a>
-			   		 
-					
-			   		</li>
+					 
 			   		 
 				</ul> 
 			</div>

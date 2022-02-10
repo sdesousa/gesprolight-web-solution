@@ -40,9 +40,9 @@
 	    <h1> <h:outputText value="#{msg.show_project_list}" /></h1>
 		<h:form>
 			<p class="col-md-12 bg-light text-right">
-				<h:commandButton value="Ajouter"
+				<h:commandButton   value="#{msg.add}"
 					action="#{ctrProjetBean.addProject}" styleClass="btn btn-success" />
-
+					 
 			</p>
 
 			<h:dataTable value="#{ctrProjetBean.projectList}" var="proj"
