@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#register.xhtml" PATH="/register.xhtml"
+ <PROCESS-ITEM NAME="rules:#addEmployee.xhtml" PATH="/addEmployee.xhtml"
   SHAPE="256,33,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#register.xhtml:0" NAME="item"
-   PATH="/register.xhtml" model-entity="JSFProcessItem">
+  <PROCESS-ITEM ID="rules:#addEmployee.xhtml:0" NAME="item"
+   PATH="/addEmployee.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
     ID="success:#{ctrEmployeeBean.saveEmployee}:#empList.xhtml"
     NAME="output" PATH="/empList.xhtml" TARGET="rules:#empList.xhtml"
@@ -11,5 +11,98 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#empList.xhtml" PATH="/empList.xhtml"
-  SHAPE="448,17,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="448,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#empList.xhtml:0" NAME="item"
+   PATH="/empList.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{ctrEmployeeBean.updateEmpById}:#updateEmp.xhtml"
+    NAME="output" PATH="/updateEmp.xhtml"
+    TARGET="rules:#updateEmp.xhtml"
+    TITLE="#{ctrEmployeeBean.updateEmpById}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrEmployeeBean.deleteEmpById}:#empList.xhtml"
+    NAME="output1" PATH="/empList.xhtml" TARGET="rules:#empList.xhtml"
+    TITLE="#{ctrEmployeeBean.deleteEmpById}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#updateEmp.xhtml" PATH="/updateEmp.xhtml"
+  SHAPE="240,177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#updateEmp.xhtml:0" NAME="item"
+   PATH="/updateEmp.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrEmployeeBean.updateEmployee}:#empList.xhtml"
+    NAME="output" PATH="/empList.xhtml" TARGET="rules:#empList.xhtml"
+    TITLE="#{ctrEmployeeBean.updateEmployee}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#projectList.xhtml" PATH="/projectList.xhtml"
+  SHAPE="272,289,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#projectList.xhtml:0" NAME="item"
+   PATH="/projectList.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrProjetBean.getProjectPhase}:#phaseList.xhtml"
+    NAME="output" PATH="/phaseList.xhtml"
+    TARGET="rules:#phaseList.xhtml"
+    TITLE="#{ctrProjetBean.getProjectPhase}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrProjetBean.addProject}:#addOrUpdateProject.xhtml"
+    NAME="output1" PATH="/addOrUpdateProject.xhtml"
+    TARGET="rules:#addOrUpdateProject.xhtml"
+    TITLE="#{ctrProjetBean.addProject}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{ctrProjetBean.selectProjectById}:#addOrUpdateProject.xhtml"
+    NAME="output2" PATH="/addOrUpdateProject.xhtml"
+    TARGET="rules:#addOrUpdateProject.xhtml"
+    TITLE="#{ctrProjetBean.selectProjectById}:[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#addPhase.xhtml" PATH="/addPhase.xhtml"
+  SHAPE="272,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#addPhase.xhtml:0" NAME="item"
+   PATH="/addPhase.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrPhaseBean.savePhase}:#phaseList.xhtml"
+    NAME="output" PATH="/phaseList.xhtml"
+    TARGET="rules:#phaseList.xhtml"
+    TITLE="#{ctrPhaseBean.savePhase}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="errors:#{ctrPhaseBean.savePhase}:#addPhase.xhtml" NAME="output1"
+    PATH="/addPhase.xhtml" TARGET="rules:#addPhase.xhtml"
+    TITLE="#{ctrPhaseBean.savePhase}:errors" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#phaseList.xhtml" PATH="/phaseList.xhtml"
+  SHAPE="512,273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#phaseList.xhtml:0" NAME="item"
+   PATH="/phaseList.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrPhaseBean.addPhase}:#addPhase.xhtml" NAME="output"
+    PATH="/addPhase.xhtml" TARGET="rules:#addPhase.xhtml"
+    TITLE="#{ctrPhaseBean.addPhase}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#addOrUpdateProject.xhtml"
+  PATH="/addOrUpdateProject.xhtml" SHAPE="496,449,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#addOrUpdateProject.xhtml:0" NAME="item"
+   PATH="/addOrUpdateProject.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrProjetBean.saveProject}:#projectList.xhtml"
+    NAME="output" PATH="/projectList.xhtml"
+    TARGET="rules:#projectList.xhtml"
+    TITLE="#{ctrProjetBean.saveProject}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="errors:#{ctrProjetBean.saveProject}:#addOrUpdateProject.xhtml"
+    NAME="output1" PATH="/addOrUpdateProject.xhtml"
+    TARGET="rules:#addOrUpdateProject.xhtml"
+    TITLE="#{ctrProjetBean.saveProject}:errors" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#addOrUpdateProject.xhtml:1" NAME="item1"
+   PATH="/addOrUpdateProject.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{ctrProjetBean.updateProjectById}:#projectList.xhtml"
+    NAME="output" PATH="/projectList.xhtml"
+    TARGET="rules:#projectList.xhtml"
+    TITLE="#{ctrProjetBean.updateProjectById}:success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

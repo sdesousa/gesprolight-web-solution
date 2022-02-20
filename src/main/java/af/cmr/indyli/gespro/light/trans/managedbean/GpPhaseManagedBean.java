@@ -5,17 +5,13 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import af.cmr.indyli.gespro.light.business.entity.GpPhase;
-import af.cmr.indyli.gespro.light.business.entity.GpProject;
 import af.cmr.indyli.gespro.light.business.exception.GesproBusinessException;
 import af.cmr.indyli.gespro.light.business.service.IGpPhaseService;
-import af.cmr.indyli.gespro.light.business.service.IGpProjectService;
 import af.cmr.indyli.gespro.light.business.service.impl.GpPhaseServiceImpl;
-import af.cmr.indyli.gespro.light.business.service.impl.GpProjectServiceImpl;
 
 @ManagedBean(name = "ctrPhaseBean")
 @SessionScoped
@@ -27,12 +23,7 @@ public class GpPhaseManagedBean implements Serializable {
 	private static final long serialVersionUID = 7723786038820169772L;
 	private GpPhase phaseDataBean = new GpPhase();
 	private IGpPhaseService phaseService = new GpPhaseServiceImpl();
-	private IGpProjectService projectService = new GpProjectServiceImpl();
 	private List<GpPhase> phaseList = null;
-	private int projectId;
-
-	@ManagedProperty(value = "#{ctrProjetBean}")
-	private GpProjectManagedBean projectManagedBean = new GpProjectManagedBean();
 
 	// constructeur
 	public GpPhaseManagedBean() {
@@ -41,18 +32,13 @@ public class GpPhaseManagedBean implements Serializable {
 
 	// recupere l'id du project et renvoie vers form add phase
 	public String addPhase() {
-		projectId = Integer.valueOf(
-				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("projectId"));
+		Integer projectId = (Integer)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentProjectId");
+		phaseDataBean.getGpProject().setId(projectId);
 		return "success";
 	}
 
 	// appelle create phase
 	public String savePhase() {
-
-		GpProject gpProject = new GpProject();
-		gpProject = this.projectService.findById(projectId);
-
-		this.phaseDataBean.setGpProject(gpProject);
 		try {
 			this.phaseService.create(phaseDataBean);
 		} catch (GesproBusinessException e) {
@@ -61,11 +47,8 @@ public class GpPhaseManagedBean implements Serializable {
 
 			return null;
 		}
-
-		GpPhaseServiceImpl phaseServiceImpl = new GpPhaseServiceImpl();
-		List<GpPhase> phases = phaseServiceImpl.findByProjectId(projectId);
-		projectManagedBean.setPhaseList(phases);
-
+		Integer projectId = (Integer)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentProjectId");
+		this.phaseList = phaseService.findByProjectId(projectId);
 		return "success";
 	}
 
@@ -85,21 +68,4 @@ public class GpPhaseManagedBean implements Serializable {
 	public void setPhaseList(List<GpPhase> phaseList) {
 		this.phaseList = phaseList;
 	}
-
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
-	}
-
-	public int getProjectId() {
-		return projectId;
-	}
-
-	public GpProjectManagedBean getProjectManagedBean() {
-		return projectManagedBean;
-	}
-
-	public void setProjectManagedBean(GpProjectManagedBean projectManagedBean) {
-		this.projectManagedBean = projectManagedBean;
-	}
-
 }

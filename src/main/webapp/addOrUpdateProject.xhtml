@@ -62,9 +62,9 @@
 					id="amount"
 					requiredMessage="#{msg.register_project_amont_required}" />
 
-				<!-- ComboBox ProjectManager -->
+				<!-- ComboBox ProjectManager --> 
 				<h:outputText value="#{msg.project_mp}" />
-				<h:selectOneMenu value="#{ctrProjetBean.idPm}"
+				<h:selectOneMenu value="#{ctrProjetBean.projectDataBean.gpChefProjet.id}"
 					styleClass="form-control">
 					<f:selectItem itemLabel=" select a Project Manager"
 						itemValue="#{null}" />
@@ -74,7 +74,7 @@
 
 				<!-- ComboBox Organisation -->
 				<h:outputText value="#{msg.project_org}" />
-				<h:selectOneMenu value="#{ctrProjetBean.idOrg}"
+				<h:selectOneMenu value="#{ctrProjetBean.projectDataBean.gpOrganization.id}"
 					styleClass="form-control">
 					<f:selectItem itemLabel=" select an organisation"
 						itemValue="#{null}" />
@@ -82,7 +82,7 @@
 						itemLabel="${org.name}" itemValue="#{org.id}" />
 				</h:selectOneMenu>
 				<br />
-
+				<h:inputHidden value="#{ctrProjetBean.projectDataBean.id}" id ="projectId"/>
 				<h:messages id="errors" style="color:red;margin:8px;" />
 				<h:commandButton styleClass="btn btn-success"
 					value="#{msg.submit_button}" action="#{ctrProjetBean.saveProject}" />
